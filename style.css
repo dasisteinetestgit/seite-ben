@@ -1,0 +1,220 @@
+/* GRUNDLAGEN */
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #fff0f5; /* Zartes Rosa */
+  color: #444;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* LILIEN HINTERGRUND */
+.bg-animation {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; pointer-events: none; overflow: hidden;
+}
+.bg-animation span {
+  position: absolute; font-size: 2rem; opacity: 0.3;
+  animation: floatUp 15s linear infinite; bottom: -50px;
+}
+.bg-animation span:nth-child(1) { left: 10%; animation-duration: 12s; }
+.bg-animation span:nth-child(2) { left: 30%; animation-duration: 18s; animation-delay: 2s; }
+.bg-animation span:nth-child(3) { left: 70%; animation-duration: 14s; animation-delay: 5s; }
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(360deg); }
+}
+
+/* --- BRIEFUMSCHLAG ANIMATION --- */
+#envelope-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #fff0f5;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 1000; transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative; width: 300px; height: 200px;
+  background: #d81b60; /* Dunkelrosa innen */
+  margin-bottom: 20px;
+}
+
+.back {
+  position: absolute; width: 100%; height: 100%;
+  background: #e91e63;
+}
+
+.letter-preview {
+  position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+  background: white; display: flex; align-items: center; justify-content: center;
+  font-family: 'Dancing Script', cursive; font-size: 1.5rem;
+  transition: transform 0.6s ease;
+}
+
+/* Die Dreiecke, die den Umschlag bilden */
+.front-left, .front-right {
+  position: absolute; bottom: 0; width: 0; height: 0;
+  border-style: solid; z-index: 10;
+}
+.front-left {
+  border-width: 100px 150px 100px 150px; /* Dreieck Form */
+  border-color: transparent transparent transparent #f48fb1;
+  left: 0;
+}
+.front-right {
+  border-width: 100px 150px 100px 150px;
+  border-color: transparent transparent #f06292 #f06292;
+  right: 0; bottom: 0;
+}
+
+.top-flap {
+  position: absolute; top: 0; left: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 100px 150px 0 150px;
+  border-color: #ec407a transparent transparent transparent;
+  transform-origin: top;
+  transition: transform 0.6s ease, z-index 0.6s;
+  z-index: 20;
+}
+
+.heart-seal {
+  position: absolute; top: 90px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem; z-index: 30;
+  animation: pulse 1.5s infinite;
+  transition: opacity 0.3s;
+}
+
+/* Wenn geöffnet wird */
+.envelope.open .top-flap {
+  transform: rotateX(180deg);
+  z-index: 1; /* Klappe geht nach hinten */
+}
+.envelope.open .heart-seal { opacity: 0; }
+.envelope.open .letter-preview {
+  transform: translateY(-50px); /* Brief rutscht etwas raus */
+  z-index: 5;
+}
+
+@keyframes pulse { 0% { transform: translate(-50%) scale(1); } 50% { transform: translate(-50%) scale(1.2); } 100% { transform: translate(-50%) scale(1); } }
+
+.click-hint {
+  margin-top: 120px; font-family: 'Dancing Script', cursive;
+  color: #880e4f; font-size: 1.5rem;
+}
+
+/* --- HAUPT INHALT --- */
+#main-content { padding-bottom: 90px; opacity: 0; transition: opacity 1s; }
+#main-content.fade-in { opacity: 1; }
+.hidden { display: none; }
+
+.hidden-tab { display: none; }
+.active-tab { display: block; animation: slideIn 0.5s ease; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Karte Design */
+.card {
+  background: white; margin: 20px; padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  line-height: 1.7;
+}
+
+h2 { font-family: 'Dancing Script', cursive; color: #880e4f; font-size: 2.5rem; text-align: center; margin-top: 0; }
+p { margin-bottom: 15px; }
+
+/* Fotos */
+/* --- FOTO GALERIE (NEU) --- */
+
+/* Der Container (Hält die Bilder zusammen) */
+.gallery {
+  display: flex;              /* Sagt: "Ordne den Inhalt nebeneinander an" */
+  flex-wrap: wrap;            /* Wenn die Zeile voll ist, mach in der nächsten weiter */
+  gap: 10px;                  /* Kleiner Abstand zwischen den Bildern */
+  justify-content: center;    /* Alles schön mittig */
+}
+
+/* Die Bilder selbst */
+.gallery img {
+  width: 100px;               /* Feste Breite (schön klein) */
+  height: 100px;              /* Feste Höhe (damit alle gleich groß sind) */
+  object-fit: cover;          /* WICHTIG: Schneidet das Bild zurecht, damit Gesichter nicht verzerrt werden! */
+  border-radius: 10px;        /* Runde Ecken */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Kleiner Schatten */
+  transition: transform 0.3s; /* Animation beim Drüberfahren */
+}
+
+/* Kleiner Zoom-Effekt, wenn man mit der Maus drauf geht */
+.gallery img:hover {
+  transform: scale(1.1);      /* Bild wird etwas größer */
+  z-index: 10;
+}
+
+/* MENÜ UNTEN */
+.bottom-nav {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: white; padding: 10px 20px;
+  border-radius: 50px;
+  display: flex; gap: 20px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  z-index: 900;
+}
+
+.nav-btn {
+  background: none; border: none;
+  display: flex; flex-direction: column; align-items: center;
+  color: #aaa; cursor: pointer;
+  font-family: 'Nunito', sans-serif; font-size: 0.8rem;
+}
+/* --- POPUP / LIGHTBOX DESIGN --- */
+.modal {
+  display: none; /* Standardmäßig versteckt */
+  position: fixed;
+  z-index: 2000; /* Ganz oben drüber liegen */
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.85); /* Dunkler Hintergrund */
+  backdrop-filter: blur(5px); /* Hintergrund leicht verschwommen */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  /* Hier verhindern wir, dass es zu riesig wird: */
+  max-width: 90%;
+  max-height: 80vh;
+
+  border-radius: 10px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+
+  /* Perfekt mittig positionieren */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: zoomIn 0.3s;
+}
+
+/* Kleiner Zoom-Effekt beim Öffnen */
+@keyframes zoomIn {
+  from {transform: translateY(-50%) scale(0.8); opacity: 0;}
+  to {transform: translateY(-50%) scale(1); opacity: 1;}
+}
+
+/* Das X zum Schließen */
+.close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.close:hover { color: #d81b60; }
+
+.nav-btn.active-btn { color: #d81b60; font-weight: bold; }
+.nav-btn .material-icons-round { font-size: 24px; margin-bottom: 2px; }

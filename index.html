@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für mein Mausebein</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg-animation">
+  <span>⚜️</span><span>⚜️</span><span>⚜️</span><span>⚜️</span><span>⚜️</span>
+</div>
+
+<div id="envelope-container" onclick="openLetter()">
+  <div class="envelope">
+    <div class="back"></div>
+    <div class="letter-preview">
+      <p>Für dich...</p>
+    </div>
+    <div class="front-left"></div>
+    <div class="front-right"></div>
+    <div class="top-flap"></div>
+    <div class="heart-seal">❤️</div>
+  </div>
+  <p class="click-hint">Tippe auf den Brief zum Öffnen</p>
+</div>
+
+<main id="main-content" class="hidden">
+
+  <section id="tab-letter" class="active-tab">
+    <div class="card">
+      <h2>Mein Brief an dich</h2>
+      <div class="scroll-text">
+        <p><b>Hallo Mausebein,</b></p>
+        <p>ich weiß, dass ich vielleicht seit einer Weile etwas abwesend bin und nicht die Person bin, in die du dich verliebt hast. Das tut mir wirklich mega leid, und ich weiß, dass ich das niemals absichtlich machen würde. Ich würde dir niemals absichtlich weh tun, da du das Beste bist, was mir jemals passiert ist.</p>
+        <p>Ich sitze gerade hier und mache diese Seite als Danke für alles, was du für mich machst, und um dir zu sagen, dass egal, was passieren sollte – egal, wie viel wir streiten oder Diskussionen wir haben – <b>du meine Frau bist und das wird sich niemals ändern.</b></p>
+        <p>Es fällt mir einfach immer mega schwer, mit dir zu reden, wenn du über dieses Ex-Thema redest und mir all diese Vorwürfe gibst, die meine kompletten Bemühungen irgendwie in den Dreck ziehen. Es ist natürlich keine Ausrede, aber ich ziehe mich dann immer unabsichtlich zurück, obwohl ich weiß, dass offene Kommunikation am besten wäre.</p>
+        <p>Ich hoffe sehr, dass du es in deinem Herzen finden kannst, mir zu verzeihen und mich weiterhin so zu lieben, wie du es bis jetzt gemacht hast.</p>
+        <p>Ich habe mich noch nie so geliebt gefühlt. Ich habe noch nie jemanden so sehr geliebt wie dich! Ich hatte noch nie so viele Gefühle für einen Menschen, wie ich sie bei dir habe. Ich vermisse dich so unnormal krass, dass du dir das nicht mal vorstellen kannst.</p>
+        <p class="signatur">In Liebe ❤️</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-future" class="hidden-tab">
+    <div class="card">
+      <h2>Unsere Zukunft</h2>
+      <p>Zurzeit ist einfach so viel Stress bei mir, und irgendwie bin ich trauriger als sonst und habe keine Ahnung, wieso. Ich habe auch keinen Grund dafür, deswegen habe ich es nie mit dir angesprochen. Liegt wahrscheinlich einfach daran, dass ich dich so sehr vermisse.</p>
+      <hr>
+      <p>Alles in unserem Leben wird vergehen. Eltern werden von uns gehen. Freunde und Geschwister werden ihre eigenen Familien haben. Unsere Kinder werden alt und ziehen dann mit ihren Partnern zusammen. <b>Das einzig Konstante in unserem Leben sind wir zwei füreinander.</b></p>
+      <p>Ich weiß, dass ich den besten Partner überhaupt ausgesucht habe, und bin extrem stolz auf uns beide, da wir immer unser Bestes geben. Egal, was die Zukunft mit sich bringt: Ich bin einfach glücklich, dass ich dich an meiner Seite habe.</p>
+      <h3 style="text-align:center; color:#d81b60; margin-top:20px;">Ich liebe dich über alles, Bubu! ❤️</h3>
+    </div>
+  </section>
+
+  <section id="tab-photos" class="hidden-tab">
+    <div class="card">
+      <h2>Wir beide</h2>
+      <div class="gallery">
+        <img src="images/foto1.jpeg" alt="Wir" onclick="openModal(this)">
+        <img src="images/foto2.jpeg" alt="Ich liebe dich" onclick="openModal(this)">
+        <img src="images/foto3.jpeg" alt="Mein Babylein" onclick="openModal(this)">
+        <img src="images/foto4.jpeg" alt="Kussssss" onclick="openModal(this)">
+      </div>
+    </div>
+  </section>
+
+  <nav class="bottom-nav">
+    <button onclick="showTab('tab-letter')" class="nav-btn active-btn">
+      <span class="material-icons-round">email</span>
+      <span>Brief</span>
+    </button>
+    <button onclick="showTab('tab-future')" class="nav-btn">
+      <span class="material-icons-round">favorite</span>
+      <span>Zukunft</span>
+    </button>
+    <button onclick="showTab('tab-photos')" class="nav-btn">
+      <span class="material-icons-round">photo_library</span>
+      <span>Fotos</span>
+    </button>
+  </nav>
+
+</main>
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+<script>
+  // Funktion für die Briefumschlag-Animation
+  function openLetter() {
+    const envelope = document.querySelector('.envelope');
+    const container = document.getElementById('envelope-container');
+    const mainContent = document.getElementById('main-content');
+
+    // 1. Umschlag öffnen Animation
+    envelope.classList.add('open');
+
+    // 2. Nach kurzer Zeit den Umschlag ausblenden und Inhalt zeigen
+    setTimeout(() => {
+      container.style.opacity = '0';
+      setTimeout(() => {
+        container.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        mainContent.classList.add('fade-in');
+      }, 500);
+    }, 800);
+  }
+
+  // Funktion für das Menü
+  function showTab(tabId) {
+    // Alle Tabs verstecken
+    document.querySelectorAll('section').forEach(el => {
+      el.classList.remove('active-tab');
+      el.classList.add('hidden-tab');
+    });
+    // Alle Buttons zurücksetzen
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.remove('active-btn');
+    });
+
+    // Gewählten Tab zeigen
+    document.getElementById(tabId).classList.remove('hidden-tab');
+    document.getElementById(tabId).classList.add('active-tab');
+
+    // Button aktiv markieren (nur Optik)
+    event.currentTarget.classList.add('active-btn');
+
+    // Nach oben scrollen
+    window.scrollTo(0,0);
+  }
+  // Öffnet das Bild groß
+  function openModal(element) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImg");
+
+    modal.style.display = "block"; // Zeige das Fenster
+    modalImg.src = element.src;    // Übernimm das Bild, das geklickt wurde
+  }
+
+  // Schließt das Bild wieder
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+</script>
+</body>
+</html>
