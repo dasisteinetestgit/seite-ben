@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für mein Mausebein</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg-animation">
+  <span>⚜️</span><span>⚜️</span><span>⚜️</span><span>⚜️</span><span>⚜️</span>
+</div>
+
+<div id="envelope-container" onclick="openLetter()">
+  <div class="envelope">
+    <div class="back"></div>
+    <div class="letter-preview">
+      <p>Für dich...</p>
+    </div>
+    <div class="front-left"></div>
+    <div class="front-right"></div>
+    <div class="top-flap"></div>
+    <div class="heart-seal">❤️</div>
+  </div>
+  <p class="click-hint">Tippe auf den Brief zum Öffnen</p>
+</div>
+
+<main id="main-content" class="hidden">
+
+  <section id="tab-letter" class="active-tab">
+    <div class="card">
+      <h2>Mein Brief an dich</h2>
+      <div class="scroll-text">
+        <p><b>Hallo Mausebein,</b></p>
+        <p>ich weiß, dass ich vielleicht seit einer Weile etwas abwesend bin und nicht die Person bin, in die du dich verliebt hast. Das tut mir wirklich mega leid, und ich weiß, dass ich das niemals absichtlich machen würde. Ich würde dir niemals absichtlich weh tun, da du das Beste bist, was mir jemals passiert ist.</p>
+        <p>Ich sitze gerade hier und mache diese Seite als Danke für alles, was du für mich machst, und um dir zu sagen, dass egal, was passieren sollte – egal, wie viel wir streiten oder Diskussionen wir haben – <b>du meine Frau bist und das wird sich niemals ändern.</b></p>
+        <p>Es fällt mir einfach immer mega schwer, mit dir zu reden, wenn du über dieses Ex-Thema redest und mir all diese Vorwürfe gibst, die meine kompletten Bemühungen irgendwie in den Dreck ziehen. Es ist natürlich keine Ausrede, aber ich ziehe mich dann immer unabsichtlich zurück, obwohl ich weiß, dass offene Kommunikation am besten wäre.</p>
+        <p>Ich hoffe sehr, dass du es in deinem Herzen finden kannst, mir zu verzeihen und mich weiterhin so zu lieben, wie du es bis jetzt gemacht hast.</p>
+        <p>Ich habe mich noch nie so geliebt gefühlt. Ich habe noch nie jemanden so sehr geliebt wie dich! Ich hatte noch nie so viele Gefühle für einen Menschen, wie ich sie bei dir habe. Ich vermisse dich so unnormal krass, dass du dir das nicht mal vorstellen kannst.</p>
+        <p class="signatur">In Liebe ❤️</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-future" class="hidden-tab">
+    <div class="card">
+      <h2>Unsere Zukunft</h2>
+      <p>Zurzeit ist einfach so viel Stress bei mir, und irgendwie bin ich trauriger als sonst und habe keine Ahnung, wieso. Ich habe auch keinen Grund dafür, deswegen habe ich es nie mit dir angesprochen. Liegt wahrscheinlich einfach daran, dass ich dich so sehr vermisse.</p>
+      <hr>
+      <p>Alles in unserem Leben wird vergehen. Eltern werden von uns gehen. Freunde und Geschwister werden ihre eigenen Familien haben. Unsere Kinder werden alt und ziehen dann mit ihren Partnern zusammen. <b>Das einzig Konstante in unserem Leben sind wir zwei füreinander.</b></p>
+      <p>Ich weiß, dass ich den besten Partner überhaupt ausgesucht habe, und bin extrem stolz auf uns beide, da wir immer unser Bestes geben. Egal, was die Zukunft mit sich bringt: Ich bin einfach glücklich, dass ich dich an meiner Seite habe.</p>
+      <h3 style="text-align:center; color:#d81b60; margin-top:20px;">Ich liebe dich über alles, Bubu! ❤️</h3>
+    </div>
+  </section>
+
+  <section id="tab-timeline" class="hidden-tab">
+    <div class="card">
+      <h2>Unsere Geschichte</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">24.04.2025</div>
+          <div class="timeline-content">
+            <h3>Das Kennenlernen ✨</h3>
+            <p>Hier hat alles angefangen. Unser erstes Mal Kennenlernen.</p>
+            <img src="images/t1.jpeg" alt="Kennenlernen" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">12.07.2025</div>
+          <div class="timeline-content">
+            <h3>Unser Start ❤️</h3>
+            <p>Erstes Treffen und der Tag, an dem wir zusammengekommen sind. Du und ich.</p>
+            <img src="images/t2.jpeg" alt="Zusammenkommen" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">19.09.2025</div>
+          <div class="timeline-content">
+            <h3>Zweites Treffen 🥰</h3>
+            <p>Endlich wieder bei dir.</p>
+            <img src="images/t3.jpeg" alt="2. Treffen" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">26.09.2025</div>
+          <div class="timeline-content">
+            <h3>Drittes Treffen ☀️</h3>
+            <p>Jede Minute mit dir ist kostbar.</p>
+            <img src="images/t4.jpeg" alt="3. Treffen" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">31.10.2025</div>
+          <div class="timeline-content">
+            <h3>Viertes Treffen 🍂</h3>
+            <p>Herbst mit dir.</p>
+            <img src="images/t5.jpeg" alt="4. Treffen" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">21.12.2025</div>
+          <div class="timeline-content">
+            <h3>Linz & Familie 🏠</h3>
+            <p>Das 5. Treffen. Wir waren in Linz und du hast meine Familie kennengelernt.</p>
+            <img src="images/t6.jpeg" alt="Linz Familie" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">22.12.2025</div>
+          <div class="timeline-content">
+            <h3>Hallstatt Trip 🏔️</h3>
+            <p>Unser Ausflug zusammen nach Hallstatt. Ein Traumort mit meiner Traumfrau.</p>
+            <img src="images/t7.jpeg" alt="Hallstatt" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">24.12.2025</div>
+          <div class="timeline-content">
+            <h3>Weihnachten in Linz 🎄</h3>
+            <p>Zugfahrt zurück in die Schweiz</p>
+            <img src="images/t8.jpeg" alt="Weihnachten" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">31.12.2025</div>
+          <div class="timeline-content">
+            <h3>Unser erstes Silvester 🎆</h3>
+            <p>Der Start in ein neues Jahr, Seite an Seite.</p>
+            <img src="images/t9.jpeg" alt="Silvester" class="timeline-img" onclick="openModal(this)">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-photos" class="hidden-tab">
+    <div class="card">
+      <h2>Wir beide</h2>
+      <div class="gallery">
+        <img src="images/t2.jpg" alt="Wir" onclick="openModal(this)">
+        <img src="images/t6.jpg" alt="Ich liebe dich" onclick="openModal(this)">
+        <img src="images/t7.jpg" alt="Mein Babylein" onclick="openModal(this)">
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-timer" class="hidden-tab">
+    <div class="card">
+      <h2>Unsere Zeit</h2>
+      <p>Jede Sekunde mit dir ist ein Geschenk. Wir sind jetzt schon...</p>
+
+      <div id="timer-container">
+        <div class="time-box">
+          <span id="days">0</span>
+          <span class="label">Tage</span>
+        </div>
+        <div class="time-box">
+          <span id="hours">0</span>
+          <span class="label">Std</span>
+        </div>
+        <div class="time-box">
+          <span id="minutes">0</span>
+          <span class="label">Min</span>
+        </div>
+        <div class="time-box">
+          <span id="seconds">0</span>
+          <span class="label">Sek</span>
+        </div>
+      </div>
+
+      <p style="text-align:center; margin-top:30px; font-weight:bold; color:#d81b60;">...unzertrennlich! ❤️</p>
+    </div>
+  </section>
+
+  <nav class="bottom-nav">
+    <button onclick="showTab('tab-letter')" class="nav-btn active-btn">
+      <span class="material-icons-round">email</span>
+      <span>Brief</span>
+    </button>
+    <button onclick="showTab('tab-timeline')" class="nav-btn">
+      <span class="material-icons-round">history_edu</span>
+      <span>Story</span>
+    </button>
+    <button onclick="showTab('tab-timer')" class="nav-btn">
+      <span class="material-icons-round">access_time</span>
+      <span>Zeit</span>
+    </button>
+    <button onclick="showTab('tab-future')" class="nav-btn">
+      <span class="material-icons-round">favorite</span>
+      <span>Zukunft</span>
+    </button>
+    <button onclick="showTab('tab-photos')" class="nav-btn">
+      <span class="material-icons-round">photo_library</span>
+      <span>Fotos</span>
+    </button>
+  </nav>
+
+</main>
+
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+  // Briefumschlag öffnen
+  function openLetter() {
+    const envelope = document.querySelector('.envelope');
+    const container = document.getElementById('envelope-container');
+    const mainContent = document.getElementById('main-content');
+
+    envelope.classList.add('open');
+
+    setTimeout(() => {
+      container.style.opacity = '0';
+      setTimeout(() => {
+        container.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        mainContent.classList.add('fade-in');
+      }, 500);
+    }, 800);
+  }
+
+  // Tabs wechseln
+  function showTab(tabId) {
+    document.querySelectorAll('section').forEach(el => {
+      el.classList.remove('active-tab');
+      el.classList.add('hidden-tab');
+    });
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.remove('active-btn');
+    });
+
+    document.getElementById(tabId).classList.remove('hidden-tab');
+    document.getElementById(tabId).classList.add('active-tab');
+
+    // Highlight Button
+    event.currentTarget.classList.add('active-btn');
+
+    window.scrollTo(0,0);
+  }
+
+  // Bild groß machen
+  function openModal(element) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImg");
+    modal.style.display = "block";
+    modalImg.src = element.src;
+  }
+
+  // Bild schließen
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
+  // Timer starten (12. Juli 2025)
+  function startTimer() {
+    // 12. Juli 2025 (Monat 6, da Januar = 0)
+    const startDate = new Date(2025, 6, 12);
+
+    function update() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    setInterval(update, 1000);
+    update();
+  }
+
+  startTimer();
+</script>
+</body>
+</html>

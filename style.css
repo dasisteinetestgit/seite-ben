@@ -1,0 +1,179 @@
+/* --- GRUNDLAGEN --- */
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #fff0f5; /* Zartes Rosa */
+  color: #444;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding-bottom: 90px; /* Platz für Menü */
+}
+
+/* --- LILIEN HINTERGRUND --- */
+.bg-animation {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; pointer-events: none; overflow: hidden;
+}
+.bg-animation span {
+  position: absolute; font-size: 2rem; opacity: 0.3;
+  animation: floatUp 15s linear infinite; bottom: -50px;
+}
+.bg-animation span:nth-child(1) { left: 10%; animation-duration: 12s; }
+.bg-animation span:nth-child(2) { left: 30%; animation-duration: 18s; animation-delay: 2s; }
+.bg-animation span:nth-child(3) { left: 70%; animation-duration: 14s; animation-delay: 5s; }
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(360deg); }
+}
+
+/* --- BRIEFUMSCHLAG --- */
+#envelope-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #fff0f5;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 1000; transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+.envelope {
+  position: relative; width: 300px; height: 200px;
+  background: #d81b60;
+  margin-bottom: 20px;
+}
+.back { position: absolute; width: 100%; height: 100%; background: #e91e63; }
+.letter-preview {
+  position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+  background: white; display: flex; align-items: center; justify-content: center;
+  font-family: 'Dancing Script', cursive; font-size: 1.5rem;
+  transition: transform 0.6s ease;
+}
+.front-left {
+  position: absolute; bottom: 0; left: 0; width: 0; height: 0;
+  border-style: solid; border-width: 100px 150px 100px 150px;
+  border-color: transparent transparent transparent #f48fb1; z-index: 10;
+}
+.front-right {
+  position: absolute; bottom: 0; right: 0; width: 0; height: 0;
+  border-style: solid; border-width: 100px 150px 100px 150px;
+  border-color: transparent transparent #f06292 #f06292; z-index: 10;
+}
+.top-flap {
+  position: absolute; top: 0; left: 0; width: 0; height: 0;
+  border-style: solid; border-width: 100px 150px 0 150px;
+  border-color: #ec407a transparent transparent transparent;
+  transform-origin: top; transition: transform 0.6s ease, z-index 0.6s; z-index: 20;
+}
+.heart-seal {
+  position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+  font-size: 3rem; z-index: 30; animation: pulse 1.5s infinite; transition: opacity 0.3s;
+}
+.envelope.open .top-flap { transform: rotateX(180deg); z-index: 1; }
+.envelope.open .heart-seal { opacity: 0; }
+.envelope.open .letter-preview { transform: translateY(-50px); z-index: 5; }
+@keyframes pulse { 0% { transform: translate(-50%) scale(1); } 50% { transform: translate(-50%) scale(1.2); } 100% { transform: translate(-50%) scale(1); } }
+.click-hint { margin-top: 120px; font-family: 'Dancing Script', cursive; color: #880e4f; font-size: 1.5rem; }
+
+/* --- INHALT --- */
+#main-content { opacity: 0; transition: opacity 1s; }
+#main-content.fade-in { opacity: 1; }
+.hidden-tab { display: none; }
+.active-tab { display: block; animation: slideIn 0.5s ease; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.card {
+  background: white; margin: 20px; padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  line-height: 1.7;
+}
+h2 { font-family: 'Dancing Script', cursive; color: #880e4f; font-size: 2.5rem; text-align: center; margin-top: 0; }
+
+/* --- TIMELINE DESIGN (Story) --- */
+.timeline {
+  position: relative; margin-top: 20px; padding-left: 20px;
+  border-left: 3px solid #f8bbd0;
+}
+.timeline-item { margin-bottom: 30px; position: relative; padding-left: 20px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -26px; top: 5px;
+  width: 15px; height: 15px; background: #d81b60;
+  border-radius: 50%; border: 3px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.timeline-date {
+  font-size: 0.85rem; color: #880e4f; font-weight: bold; margin-bottom: 5px;
+  background: #fce4ec; display: inline-block; padding: 3px 10px; border-radius: 12px;
+}
+.timeline-content h3 { margin: 5px 0; font-size: 1.2rem; font-family: 'Nunito', sans-serif; color: #4a0072; }
+.timeline-content p { font-size: 0.95rem; color: #555; margin: 0 0 10px 0; }
+
+/* Timeline Fotos (KLEIN & HÜBSCH) */
+.timeline-img {
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.timeline-img:hover { transform: scale(1.05); }
+
+/* --- FOTO GALERIE (Wir beide) --- */
+.gallery {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+}
+.gallery img {
+  width: 100px; height: 100px; object-fit: cover;
+  border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.gallery img:hover { transform: scale(1.1); z-index: 10; }
+
+/* --- TIMER --- */
+#timer-container {
+  display: flex; justify-content: space-between; text-align: center;
+  margin-top: 20px; background: #fce4ec; padding: 15px; border-radius: 15px;
+}
+.time-box span:first-child { font-size: 1.8rem; font-weight: bold; color: #d81b60; }
+.time-box .label { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+
+/* --- MENÜ (Navigation) --- */
+.bottom-nav {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: white; padding: 10px 20px; border-radius: 50px;
+  display: flex; gap: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 900;
+  width: max-content;
+}
+.nav-btn {
+  background: none; border: none;
+  display: flex; flex-direction: column; align-items: center;
+  color: #aaa; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 0.75rem;
+}
+.nav-btn.active-btn { color: #d81b60; font-weight: bold; }
+.nav-btn .material-icons-round { font-size: 24px; margin-bottom: 2px; }
+
+/* --- POPUP / LIGHTBOX --- */
+.modal {
+  display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+  width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+}
+.modal-content {
+  margin: auto; display: block; max-width: 90%; max-height: 80vh;
+  border-radius: 10px; box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+  position: relative; top: 50%; transform: translateY(-50%);
+  animation: zoomIn 0.3s;
+}
+@keyframes zoomIn {
+  from {transform: translateY(-50%) scale(0.8); opacity: 0;}
+  to {transform: translateY(-50%) scale(1); opacity: 1;}
+}
+.close {
+  position: absolute; top: 20px; right: 30px; color: white;
+  font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.close:hover { color: #d81b60; }
